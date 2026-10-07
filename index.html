@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Bazénový konfigurátor 3D</title>
+  <meta name="description" content="Interaktivní 3D konfigurátor bazénu – tvar, rozměry, schody, povrchy, terasa, technologie a orientační cena.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect x='3' y='9' width='26' height='14' rx='4' fill='%2338b6e8'/><path d='M5 17c3-2 5 2 8 0s5 2 8 0 5 2 6 0' stroke='white' stroke-width='2' fill='none'/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <div id="app">
+    <aside id="panel">
+      <header class="brand">
+        <div class="logo" aria-hidden="true">
+          <svg viewBox="0 0 32 32"><rect x="3" y="9" width="26" height="14" rx="4" fill="currentColor"/><path d="M5 17c3-2 5 2 8 0s5 2 8 0 5 2 6 0" stroke="#fff" stroke-width="2" fill="none"/></svg>
+        </div>
+        <div>
+          <h1>Bazénový konfigurátor</h1>
+          <p>Navrhněte si svůj bazén ve 3D</p>
+        </div>
+      </header>
+      <div id="controls" class="controls"></div>
+      <footer class="summary">
+        <div class="summary-row">
+          <div>
+            <span class="muted">Orientační cena vč. DPH</span>
+            <strong id="total">–</strong>
+          </div>
+          <button id="btn-detail" class="btn primary">Rozpis</button>
+        </div>
+        <div id="stats" class="stats"></div>
+      </footer>
+    </aside>
+
+    <main id="viewport">
+      <div id="toolbar" class="toolbar">
+        <div class="group" role="group" aria-label="Pohled">
+          <button data-view="persp" class="tb active" title="Perspektiva">3D</button>
+          <button data-view="top" class="tb" title="Pohled shora">Shora</button>
+          <button data-view="side" class="tb" title="Boční pohled">Bok</button>
+          <button data-view="low" class="tb" title="Pohled od hladiny">Hladina</button>
+        </div>
+        <div class="group">
+          <button id="btn-night" class="tb" title="Den / noc">🌙 Noc</button>
+          <button id="btn-dims" class="tb active" title="Zobrazit kóty">📏 Kóty</button>
+          <button id="btn-rotate" class="tb" title="Automatická rotace">⟳</button>
+        </div>
+        <div class="group">
+          <button id="btn-shot" class="tb" title="Uložit obrázek">📷</button>
+          <button id="btn-share" class="tb" title="Zkopírovat odkaz na konfiguraci">🔗</button>
+          <button id="btn-reset" class="tb" title="Výchozí nastavení">↺</button>
+        </div>
+      </div>
+      <div id="loading">Načítám 3D scénu…</div>
+      <div id="toast" role="status" aria-live="polite"></div>
+    </main>
+  </div>
+
+  <dialog id="detail">
+    <form method="dialog">
+      <header>
+        <h2>Souhrn konfigurace</h2>
+        <button class="close" aria-label="Zavřít">✕</button>
+      </header>
+      <div id="detail-body"></div>
+      <footer>
+        <button type="button" id="btn-json" class="btn">Stáhnout JSON</button>
+        <button type="button" id="btn-print" class="btn">Tisk</button>
+        <button type="button" id="btn-copy" class="btn primary">Kopírovat souhrn</button>
+      </footer>
+    </form>
+  </dialog>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
