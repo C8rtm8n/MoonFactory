@@ -156,7 +156,7 @@ function rebuild() {
   pool.dimsGroup.visible = showDims;
   applyLighting();
   updateSummary();
-  history.replaceState(null, '', '#c=' + encodeState());
+  try { history.replaceState(null, '', '#c=' + encodeState()); } catch { /* sandbox bez přístupu k URL */ }
 }
 
 function applyLighting() {
